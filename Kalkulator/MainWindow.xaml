@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Kalkulator"
         mc:Ignorable="d"
         Title="Kalkulator" Height="450" Width="300">
-    <Grid RenderTransformOrigin="0.502,0.514" HorizontalAlignment="Left" Width="800" Margin="10,0,0,0">
+    <Grid RenderTransformOrigin="0.502,0.514" HorizontalAlignment="Left" Width="800" Margin="22,8,0,-8">
         <TextBox x:Name="screen" HorizontalAlignment="Left" Height="41" Margin="22,10,0,0" TextWrapping="Wrap" TextAlignment="Right" VerticalAlignment="Top" Width="214" FontSize="32"/>
         <Button Content="7" HorizontalAlignment="Left" Margin="22,111,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.518,0.511" Click="Button_Click" FontSize="20"/>
         <Button Content="8" HorizontalAlignment="Left" Margin="76,111,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="20"/>
@@ -22,10 +22,11 @@
         <Button Content="-" HorizontalAlignment="Left" Margin="186,167,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="30" Opacity="0.99"/>
         <Button Content="0" HorizontalAlignment="Left" Margin="76,277,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="20"/>
         <Button Content="+" HorizontalAlignment="Left" Margin="186,222,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="28"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="22,56,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.518,0.511" Click="Button_Click" FontSize="20"/>
-        <Button Content="CE" HorizontalAlignment="Left" Margin="76,56,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="20"/>
-        <Button Content="C" HorizontalAlignment="Left" Margin="131,56,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="20"/>
+        <Button Content="," HorizontalAlignment="Left" Margin="22,56,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.518,0.511" Click="Button_Click" FontSize="20"/>
+        <Button Content="C" HorizontalAlignment="Left" Margin="76,56,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="20"/>
+        <Button HorizontalAlignment="Left" Margin="131,56,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="20" Content="CE"/>
         <Button Content="=" HorizontalAlignment="Left" Margin="186,277,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="28"/>
+        <Button Content="+/-" HorizontalAlignment="Left" Margin="22,277,0,0" VerticalAlignment="Top" Height="50" Width="50" RenderTransformOrigin="0.5,0.516" Click="Button_Click" FontSize="20"/>
 
     </Grid>
 </Window>

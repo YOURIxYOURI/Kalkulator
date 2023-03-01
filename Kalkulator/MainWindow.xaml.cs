@@ -16,91 +16,93 @@ using System.Windows.Shapes;
 
 namespace Kalkulator
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public List<string> symbols = new List<string>();
-        public bool check = false;
-        public bool check2 = true;
-        public string task = "";
-        public double equal = .0;
+        public bool check;
+        public bool check2;
+        public string task;
+        public double equal;
 
         public MainWindow()
         {
             InitializeComponent();
-            symbols.AddRange(new string[] { "+", "-", "=", "x", "/", "CE", "C" });
+            check = false;
+            check2 = true;
+            task = "";
+            equal = .0;
+            symbols.AddRange(new string[] { "+", "-", "=", "x", "/", "C", "CE" });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var data = ((Button)sender).Content.ToString();
-
-            if (check && !symbols.Contains(data))
+            try
             {
-                if(screen.Text != "Er" || screen.Text != "")
-                    equal = Convert.ToDouble(screen.Text);
-                screen.Text = "";
-                check = false;
-            }
+                var data = ((Button)sender).Content.ToString();
 
-            if (symbols.Contains(data)) 
-            {
-
-                if (task != "" && check2)
+                if (check && !symbols.Contains(data))
                 {
-                    switch (task)
-                    {
-                        case "+":
-                            equal += Convert.ToDouble(screen.Text);
-                            break;
-                        case "-":
-                            equal -= Convert.ToDouble(screen.Text);
-                            break;
-                        case "x":
-                            equal *= Convert.ToDouble(screen.Text);
-                            break;
-                        case "/":
-                            if (screen.Text != "0")
-                                equal /= Convert.ToDouble(screen.Text);
-                            else
-                            {
-                                screen.Text = "Er";
-                                check = true;
-                                return;
-                            }
-                            break;
-                    }
-                    check2 = false;
-                    screen.Text = equal.ToString();
+                    if (screen.Text != "")
+                        equal = Convert.ToDouble(screen.Text);
+                    screen.Text = "";
+                    check = false;
                 }
-                else if(task != "" && !check2)
+
+                if (symbols.Contains(data))
                 {
-                    switch (data)
+                    
+                    if (task != "" && check2)
                     {
-                        case "C":
-                            check = false;
-                            check2 = true;
-                            task = "";
-                            equal = .0;
-                            screen.Text = "";
-                            return;
-                            break;
-                        case "CE":
-                            screen.Text = "";
-                            return;
-                            break;
+                        switch (task)
+                        {
+                            case "+": equal += Convert.ToDouble(screen.Text); break;
+                            case "-": equal -= Convert.ToDouble(screen.Text); break;
+                            case "x": equal *= Convert.ToDouble(screen.Text); break;
+                            case "/": equal /= Convert.ToDouble(screen.Text); break;
+                        }
+                        check2 = false;
+                        screen.Text = equal.ToString();
+                    }
+                    else
+                    {
+                        switch (data)
+                        {
+                            case "C":
+                                check = false;
+                                check2 = true;
+                                task = "";
+                                equal = .0;
+                                screen.Text = "";
+                                break;
+                            case "CE":
+                                string s = screen.Text;
+                                if (s.Length > 1)
+                                    s = s.Substring(0, s.Length - 1);
+                                else
+                                    s = "";
+                                screen.Text = s;
+                                break;
+                        }
+                    }
+                    task = data;
+                    check = true;
+                }
+                else
+                {
+                    if(data == "+/-")
+                    {
+                        double d = Convert.ToDouble(screen.Text);
+                        d *= -1;
+                        screen.Text = d.ToString();
+                    }
+                    else 
+                    {
+                        screen.Text += data;
+                        check2 = true;
                     }
                 }
-                task = data;
-                check = true;
-            }       
-            else
-            {
-                screen.Text += data;
-                check2 = true;
             }
+            catch(Exception exc) { MessageBox.Show("U are too dumb to even use a calculator and this is why" + exc.Message, "You dumb", MessageBoxButton.OK, MessageBoxImage.Warning); }
         }
     }
 }
