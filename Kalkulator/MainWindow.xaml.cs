@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.SymbolStore;
 using System.Linq;
@@ -31,7 +31,7 @@ namespace Kalkulator
             check2 = true;
             task = "";
             equal = .0;
-            symbols.AddRange(new string[] { "+", "-", "=", "x", "/", "C", "CE" });
+            symbols.AddRange(new string[] { "+", "-", "=", "x", "/", "C", "<-" });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -61,11 +61,10 @@ namespace Kalkulator
                             case "/": equal /= Convert.ToDouble(screen.Text); break;
                         }
                         check2 = false;
-                        screen.Text = equal.ToString();
+                        if (task != "C" ) { screen.Text = equal.ToString(); }
                     }
-                    else
-                    {
-                        switch (data)
+                    check = true;
+                    switch (data)
                         {
                             case "C":
                                 check = false;
@@ -74,8 +73,10 @@ namespace Kalkulator
                                 equal = .0;
                                 screen.Text = "";
                                 break;
-                            case "CE":
+                            case "<-":
                                 string s = screen.Text;
+                                check = false;
+                                check2 = false;
                                 if (s.Length > 1)
                                     s = s.Substring(0, s.Length - 1);
                                 else
@@ -83,9 +84,7 @@ namespace Kalkulator
                                 screen.Text = s;
                                 break;
                         }
-                    }
                     task = data;
-                    check = true;
                 }
                 else
                 {
