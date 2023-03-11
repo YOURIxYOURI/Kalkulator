@@ -21,6 +21,7 @@ namespace Kalkulator
         public List<string> symbols = new List<string>();
         public bool check;
         public bool check2;
+        public bool equal_click;
         public string task;
         public double equal;
 
@@ -29,6 +30,7 @@ namespace Kalkulator
             InitializeComponent();
             check = false;
             check2 = true;
+            equal_click = false;
             task = "";
             equal = .0;
             symbols.AddRange(new string[] { "+", "-", "=", "x", "/", "C", "<-" });
@@ -84,7 +86,11 @@ namespace Kalkulator
                                 screen.Text = s;
                                 break;
                         }
-                    task = data;
+                    if (data != "=")
+                        task = data;
+                    else
+                        task = "";
+
                 }
                 else
                 {
